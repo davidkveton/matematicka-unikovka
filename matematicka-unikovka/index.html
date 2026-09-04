@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projekt CHRONOS: Digitální úniková hra z matematiky pro žáky 8. a 9. ročníku ZŠ. Interaktivní a motivující příprava na jednotné přijímací zkoušky na střední školy (CERMAT).">
+  <meta name="author" content="Digitální úniková hra - Didaktika matematiky">
+  <meta name="theme-color" content="#0a0d14">
+  <title>Projekt CHRONOS: Úniková hra z matematiky pro přijímací zkoušky</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- KaTeX pro dokonalou matematickou sazbu (s vestavěným offline fallbackem) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+  <!-- Styly aplikace -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/rooms.css">
+  <link rel="stylesheet" href="css/teacher.css">
+</head>
+<body>
+
+  <div id="app-container">
+    <!-- Hlavní herní hlavička (HUD) -->
+    <header class="game-header">
+      <div class="brand-logo" onclick="if(window.gameApp) window.gameApp.renderStartScreen()">
+        <div class="brand-icon">⏳</div>
+        <div class="brand-text">
+          <h1>PROJEKT CHRONOS</h1>
+          <span>Archiv vědění • Příprava na JPZ</span>
+        </div>
+      </div>
+
+      <!-- Herní statistiky (HUD) -->
+      <div class="game-hud">
+        <div class="hud-item hud-points" title="Aktuální získané skóre">
+          <span>🏆</span>
+          <span id="hud-score-val">0 b</span>
+        </div>
+        <div class="hud-item hud-room" title="Aktuální komora">
+          <span>🚪</span>
+          <span id="hud-room-val">1 / 6</span>
+        </div>
+        <div class="hud-item hud-timer" title="Čas strávený v archivu">
+          <span>⏱️</span>
+          <span id="hud-timer-val">00:00</span>
+        </div>
+      </div>
+
+      <!-- Akční tlačítka -->
+      <div class="header-actions">
+        <button class="icon-btn" id="toggle-sound-btn" title="Zvuk: Zapnuto">🔊</button>
+        <button class="icon-btn" id="game-info-btn" title="Pravidla a nápověda">ℹ️</button>
+        <button class="btn-teacher" id="teacher-portal-btn">
+          <span>👩‍🏫</span> Učitelský panel
+        </button>
+      </div>
+    </header>
+
+    <!-- Pás postupu místnostmi (Progress Bar) -->
+    <nav class="progress-strip" id="progress-strip" aria-label="Postup herními komorami">
+      <!-- Generováno dynamicky přes JS -->
+    </nav>
+
+    <!-- Hlavní obsahová oblast aplikace -->
+    <main class="main-content" id="main-view">
+      <!-- Dynamicky vkládané scény (Start, Komory 1-6, Vítězství, Učitel) -->
+    </main>
+  </div>
+
+  <!-- Hlavní aplikační skript (kompatibilní i s přímým otevřením přes file://) -->
+  <script src="js/bundle.js"></script>
+</body>
+</html>

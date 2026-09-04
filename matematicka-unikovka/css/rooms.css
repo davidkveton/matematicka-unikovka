@@ -1,0 +1,463 @@
+/* ==========================================================================
+   MATEMATICKÁ ÚNIKOVÁ HRA - STYLY PRO MÍSTNOSTI A INTERAKTIVNÍ PRVKY
+   ========================================================================== */
+
+.room-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Hlavička místnosti */
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.room-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.room-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.room-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.room-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Příběhový banner */
+.story-banner {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.85));
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1rem 1.25rem;
+  font-style: italic;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.story-banner i, .story-banner svg {
+  color: var(--primary);
+  margin-right: 0.5rem;
+}
+
+/* Hlavní herní layout místnosti */
+.room-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+/* Levý panel s úlohami */
+.room-tasks-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.task-card {
+  background: rgba(18, 26, 46, 0.8);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+  position: relative;
+}
+
+.task-card.active-task {
+  border-color: var(--border-medium);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+}
+
+.task-card.solved-task {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.task-number {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-reward {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--gold);
+  background: rgba(251, 191, 36, 0.12);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.task-prompt {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #f1f5f9;
+  margin-bottom: 1.25rem;
+}
+
+/* Vstupní formulář úlohy */
+.task-input-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.task-input {
+  flex: 1;
+  background: #090e1a;
+  border: 1.5px solid #334155;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  color: #ffffff;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.task-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+/* Fragment kódu - odměna za úlohu */
+.code-fragment-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.25));
+  border: 1px solid var(--primary);
+  color: #ffffff;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+  animation: pulse 3s infinite;
+}
+
+/* ==========================================================================
+   INTERAKTIVNÍ ZÁMEK MÍSTNOSTI (ROOM TERMINAL / LOCK PANEL)
+   ========================================================================== */
+.room-terminal {
+  position: sticky;
+  top: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.terminal-card {
+  background: rgba(13, 19, 36, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg), 0 0 35px rgba(56, 189, 248, 0.12);
+  text-align: center;
+}
+
+.terminal-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.terminal-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+/* Nasbírané fragmenty kódu */
+.collected-fragments {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.fragment-slot {
+  width: 44px;
+  height: 52px;
+  background: #080c18;
+  border: 2px dashed #334155;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  transition: all var(--transition-normal);
+}
+
+.fragment-slot.filled {
+  border: 2px solid var(--primary);
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--primary);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+/* ==========================================================================
+   WIDGETY MÍSTNOSTÍ (INTERACTIVE VISUALIZERS)
+   ========================================================================== */
+
+/* 1. Alchymistické / algebraické váhy (Místnost 2) */
+.balance-scale-widget {
+  background: rgba(10, 15, 29, 0.8);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scale-svg {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+/* 2. Geometrický SVG prohlížeč (Místnost 4) */
+.geometry-canvas-card {
+  background: #080d1a;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.geometry-svg {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.3));
+}
+
+/* 3. Směšovací zkumavky / Poměry (Místnost 3) */
+.potion-tubes {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.25rem 0;
+}
+
+.tube-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.test-tube {
+  width: 44px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(148, 163, 184, 0.4);
+  border-radius: 0 0 22px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tube-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transition: height 0.5s ease;
+  border-radius: 0 0 20px 20px;
+}
+
+.tube-cyan {
+  background: linear-gradient(180deg, #38bdf8, #0284c7);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+.tube-magenta {
+  background: linear-gradient(180deg, #f43f5e, #be123c);
+  box-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
+}
+
+.tube-gold {
+  background: linear-gradient(180deg, #fbbf24, #d97706);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+}
+
+/* 4. Logická matice / Runy (Místnost 5) */
+.rune-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.rune-tile {
+  aspect-ratio: 1;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid #334155;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+.rune-tile.highlight {
+  border-color: var(--primary);
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--primary);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+.rune-tile.target {
+  border: 2px dashed var(--accent);
+  color: var(--accent);
+  background: rgba(244, 63, 94, 0.1);
+  animation: pulse 2s infinite;
+}
+
+/* Závěrečná obrazovka (Victory Screen) */
+.victory-screen {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.rank-emblem {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  box-shadow: 0 0 50px rgba(56, 189, 248, 0.4);
+  position: relative;
+}
+
+.rank-platinum {
+  background: linear-gradient(135deg, #e0e7ff, #818cf8);
+  box-shadow: 0 0 50px rgba(129, 140, 248, 0.6);
+}
+
+.rank-gold {
+  background: linear-gradient(135deg, #fef08a, #f59e0b);
+  box-shadow: 0 0 50px rgba(245, 158, 11, 0.6);
+}
+
+.rank-silver {
+  background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+  box-shadow: 0 0 40px rgba(148, 163, 184, 0.5);
+}
+
+.rank-bronze {
+  background: linear-gradient(135deg, #fed7aa, #b45309);
+  box-shadow: 0 0 40px rgba(180, 83, 9, 0.5);
+}
+
+.results-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.stat-box {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Responzivita místností */
+@media (max-width: 960px) {
+  .room-grid {
+    grid-template-columns: 1fr;
+  }
+  .room-terminal {
+    position: static;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .results-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
